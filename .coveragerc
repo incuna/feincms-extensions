@@ -1,0 +1,3 @@
+[run]
+source = feincms_extensions
+omit = *tests*
