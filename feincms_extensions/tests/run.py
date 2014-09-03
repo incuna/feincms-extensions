@@ -22,9 +22,12 @@ settings.configure(
         'django.contrib.sessions',
         'django.contrib.admin',
 
+        'feincms.module.page',
+
         'feincms_extensions.tests',
     ),
     PASSWORD_HASHERS = ('django.contrib.auth.hashers.MD5PasswordHasher',),
+    ROOT_URLCONF='feincms_extensions.tests.urls',
     SITE_ID = 1,
 )
 
