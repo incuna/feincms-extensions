@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 
 
-version = '0.1.0'
+version = '0.2.0'
 
 
 install_requires = (
-    'FeinCMS>=1.9,<1.10',
+    'FeinCMS>=1.9,<1.11',
 )
 
 setup(
