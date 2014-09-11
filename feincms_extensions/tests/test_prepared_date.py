@@ -1,7 +1,8 @@
-from unittest.mock import patch
-
+from django.contrib.admin.sites import AdminSite
 from django.test import TestCase
-from django.utils.translation import ugettext_lazy as _
+from feincms.module.page.admin import PageAdmin
+from feincms.module.page.models import Page
+import mock
 
 from .factories import PageFactory
 
@@ -32,11 +33,7 @@ class TestExtension(TestCase):
 
         self.assertEqual(page.prepared_date, prepared_date)
 
-    @patch('feincms.module.page.modeladmins.PageAdmin.add_extension_options')
-    def test_handle_modeladmin(self, add_extension_options):
-        # Force admin extension mechanism to be called
-        from feincms.module.page.admin import PageAdmin
-        add_extension_options.assert_called_once_with(_('Date of Preparation'), {
-            'fields': ('_prepared_date',),
-            'classes': ('collapse',),
-        })
+    def test_handle_modeladmin(self):
+        page_admin = PageAdmin(Page, AdminSite())
+        form = page_admin.get_form(mock.Mock())()
+        self.assertIn('_prepared_date', form._meta.fields)

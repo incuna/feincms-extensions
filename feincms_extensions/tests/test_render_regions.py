@@ -1,6 +1,5 @@
-from unittest.mock import patch, MagicMock
-
 from django.test import TestCase
+from mock import patch, MagicMock
 
 from .factories import DummyFactory
 
