@@ -24,6 +24,7 @@ settings.configure(
 
         'feincms.module.page',
 
+        'feincms_extensions',
         'feincms_extensions.tests',
     ),
     PASSWORD_HASHERS = ('django.contrib.auth.hashers.MD5PasswordHasher',),
