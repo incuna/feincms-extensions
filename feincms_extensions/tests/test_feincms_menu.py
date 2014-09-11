@@ -9,6 +9,8 @@ class TestFeinCMSPageMenu(TestCase):
     def test_no_argument(self):
         parser = mock.Mock()
         token = mock.Mock()
+
+        # first argument is the template tag
         token.split_contents.return_value = ['feincms_page_menu']
 
         with self.assertRaises(TemplateSyntaxError):
