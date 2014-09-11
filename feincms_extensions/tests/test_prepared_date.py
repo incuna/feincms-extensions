@@ -1,7 +1,13 @@
+from django.contrib.admin.sites import AdminSite
 from django.test import TestCase
 from feincms.module.page.admin import PageAdmin
+from feincms.module.page.models import Page
 
 from .factories import PageFactory
+
+
+class MockRequest(object):
+    pass
 
 
 class TestExtension(TestCase):
@@ -31,6 +37,6 @@ class TestExtension(TestCase):
         self.assertEqual(page.prepared_date, prepared_date)
 
     def test_handle_modeladmin(self):
-        fieldsets = PageAdmin.fieldsets[2][1]
-        self.assertIn('_prepared_date', fieldsets['fields'])
-        self.assertIn('collapse', fieldsets['classes'])
+        page_admin = PageAdmin(Page, AdminSite())
+        form = page_admin.get_form(MockRequest)()
+        self.assertIn('_prepared_date', form._meta.fields)
