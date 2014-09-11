@@ -1,7 +1,6 @@
-from unittest.mock import patch
-
 from django.test import TestCase
 from django.utils.translation import ugettext_lazy as _
+from mock import patch
 
 from .factories import PageFactory
 
