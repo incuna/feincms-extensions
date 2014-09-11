@@ -29,6 +29,7 @@ settings.configure(
     PASSWORD_HASHERS = ('django.contrib.auth.hashers.MD5PasswordHasher',),
     ROOT_URLCONF='feincms_extensions.tests.urls',
     SITE_ID = 1,
+    MIDDLEWARE_CLASSES = (),
 )
 
 import django
