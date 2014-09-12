@@ -7,16 +7,21 @@ register = template.Library()
 
 
 class FeincmsPageMenuNode(template.Node):
-    """
-    Render the page navigation.
-    arguments:
-        feincms_page: The current feincms_page.
-        css_id: The css (dom) id to be used for the menu. Ignored if `ul_tag` is False.
-        level: The level at which to start the navigation.
-        depth: The depth of sub navigation to include.
-        show_all_subnav: Whether to show all sub navigation items (or just the ones in the current pages branch).
-        extended: Whether the navigation has been extended (to enable third party apps to exgtend the navigation).
-        ul_tag: Do we wrap the output in a <ul>? If False, `css_id` is ignored.
+    """ Render the page navigation.
+
+    It takes 8 arguments:
+      - feincms_page: The current feincms_page.
+      - css_id: The css (dom) id to be used for the menu. Ignored if `ul_tag`
+        is False.
+      - level: The level at which to start the navigation.
+      - depth: The depth of sub navigation to include.
+      - show_all_subnav: Whether to show all sub navigation items (or just the
+        ones in the current pages branch).
+      - extended: Whether the navigation has been extended (to enable third
+        party apps to exgtend the navigation).
+      - css_class_prefix: css class prefix to append to menu item.
+      - ul_tag: Do we wrap the output in a <ul>? If False, `css_id` is ignored.
+
     example usage:
         {% feincms_page_menu feincms_page depth=2 %}
     """
