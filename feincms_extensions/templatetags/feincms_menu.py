@@ -11,9 +11,14 @@ class FeincmsPageMenuNode(template.Node):
 
 
 def do_feincms_page_menu(parser, token):
+    # first argument is the template tag
     bits = token.split_contents()
-    if len(bits) < 2:
-        message = '{} requires at least one argument (a feincms_page)'.format(bits[0])
+
+    if len(bits) == 1:
+        message = '"{}" requires at least one argument (a feincms_page)'.format(bits[0])
+        raise TemplateSyntaxError(message)
+    if len(bits) > 9:
+        message = '"{}" tag accepts no more than 8 arguments.'.format(bits[0])
         raise TemplateSyntaxError(message)
 
     kwargs = {}
@@ -26,7 +31,8 @@ def do_feincms_page_menu(parser, token):
             except IndexError:
                 args.append(parser.compile_filter(bit))
     except TypeError:
-        raise template.TemplateSyntaxError('Bad arguments for tag "%s"' % bits[0])
+        message = 'Bad arguments for tag "{}"'.format(bits[0])
+        raise template.TemplateSyntaxError(message)
 
     return FeincmsPageMenuNode(*args, **kwargs)
 

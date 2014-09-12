@@ -28,3 +28,21 @@ class TestFeinCMSPageMenu(TestCase):
 
         do_feincms_page_menu(self.parser, self.token)
         FeincmsPageMenuNode.assert_called_once_with(self.parser.compile_filter())
+
+    def test_with_too_many_arguments(self):
+        # first argument is the template tag
+        self.token.split_contents.return_value = [
+            'feincms_page_menu',
+            'feincms_page',
+            '',
+            '1',
+            '1',
+            'False',
+            'False',
+            '',
+            'True',
+            'extra',
+        ]
+
+        with self.assertRaises(TemplateSyntaxError):
+            do_feincms_page_menu(self.parser, self.token)
