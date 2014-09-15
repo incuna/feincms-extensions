@@ -1,3 +1,7 @@
+## Upcoming
+
+* Add template for page navigation.
+
 ## v0.2.0
 
 * Add prepared_date extension.

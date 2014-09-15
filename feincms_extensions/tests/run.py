@@ -22,14 +22,21 @@ settings.configure(
         'django.contrib.sessions',
         'django.contrib.admin',
 
+        'feincms',
         'feincms.module.page',
 
+        'feincms_extensions',
         'feincms_extensions.tests',
+
+        'mptt',
     ),
     PASSWORD_HASHERS = ('django.contrib.auth.hashers.MD5PasswordHasher',),
     ROOT_URLCONF='feincms_extensions.tests.urls',
     SITE_ID = 1,
     MIDDLEWARE_CLASSES = (),
+    TEMPLATE_CONTEXT_PROCESSORS = (
+        'feincms.context_processors.add_page_if_missing',
+    ),
 )
 
 import django
