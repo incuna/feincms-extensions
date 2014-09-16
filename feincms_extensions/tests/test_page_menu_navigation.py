@@ -17,6 +17,15 @@ class PageMixin:
         self.page = PageFactory.create(in_navigation=True, override_url='/')
 
 
+class TestNoPage(RenderedContentTestCase):
+    view = DummyView
+
+    def test_failing(self):
+        """At least one page is required when using the Page module from FeinCMS."""
+        with self.assertRaises(AttributeError):
+            self.access_view_and_render_response()
+
+
 class TestPageMenuNavigation(PageMixin, RenderedContentTestCase):
     view = DummyView
 
