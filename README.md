@@ -17,7 +17,10 @@ Render the feincms regions into a dictionary.
 ## Page Menu Navigation (template)
 
 Render the page navigation. To enable the `feincms_extensions/navigation.html`
-template in this project add feincms_extensions` to `INSTALLED_APPS`.
+template in this project add `feincms_extensions` to `INSTALLED_APPS`, and add
+`feincms.context_processors.add_page_if_missing` to your
+`TEMPLATE_CONTEXT_PROCESSORS` setting to ensure the presence of a `feincms_page`
+instance in the template context.
 
 The template needs to be included in your template and it accepts two optional
 parameters:
