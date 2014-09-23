@@ -1,6 +1,6 @@
 ## Upcoming
 
-* Fix missing manifest to include template
+* Add missing template to package
 
 ## v0.3.0
 
