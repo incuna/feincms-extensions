@@ -1,3 +1,7 @@
+## Upcoming
+
+* Fix missing manifest to include template
+
 ## v0.3.0
 
 * Add template for page navigation.
