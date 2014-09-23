@@ -1,3 +1,7 @@
+## Upcoming
+
+* Add missing template to package
+
 ## v0.3.0
 
 * Add template for page navigation.
