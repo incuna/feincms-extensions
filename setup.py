@@ -11,7 +11,7 @@ install_requires = (
 setup(
     name='feincms-extensions',
     packages=find_packages(),
-    package_data = {'feincms_extensions': ['templates/*']},
+    package_data = {'': ['templates/*.html']},
     version=version,
     description='',
     long_description='',
