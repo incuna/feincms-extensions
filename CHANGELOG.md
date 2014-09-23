@@ -1,4 +1,4 @@
-## Upcoming
+## v0.3.1
 
 * Add missing template to package
 
