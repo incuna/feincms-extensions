@@ -7,4 +7,4 @@ class JsonRichTextContent(RichTextContent):
 
     def json(self, **kwargs):
         """Return a json serializable dictionary containing the content."""
-        return {'text': self.text}
+        return {'html': self.text}

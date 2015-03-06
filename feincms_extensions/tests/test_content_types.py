@@ -11,4 +11,4 @@ class TestJsonRichTextContent(TestCase):
         """A JsonRichTextContent can be rendered to json."""
         text = 'Rich Text'
         content = self.model(region='body', text=text)
-        self.assertEqual(content.json(), {'text': text})
+        self.assertEqual(content.json(), {'html': text})
