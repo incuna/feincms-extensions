@@ -8,3 +8,6 @@ class TestContent(models.Model):
 
     def render(self, **kwargs):
         return ''
+
+    def json(self, **kwargs):
+        return ''

@@ -12,6 +12,7 @@ Dummy.register_regions(('body', 'Main'))
 Dummy.create_content_type(TestContent)
 Dummy.register_extensions(
     'feincms_extensions.render_regions',
+    'feincms_extensions.render_json',
 )
 
 Page.register_templates({
