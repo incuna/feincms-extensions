@@ -2,6 +2,7 @@ from feincms.models import create_base_model
 from feincms.module.page.models import Page
 
 from .content import TestContent
+from .. import content_types
 
 
 class Dummy(create_base_model()):
@@ -10,6 +11,7 @@ class Dummy(create_base_model()):
 
 Dummy.register_regions(('body', 'Main'))
 Dummy.create_content_type(TestContent)
+Dummy.create_content_type(content_types.JsonRichTextContent)
 Dummy.register_extensions(
     'feincms_extensions.render_regions',
     'feincms_extensions.render_json',
