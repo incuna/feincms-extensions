@@ -52,3 +52,31 @@ class TestJsonSectionContent(TestCase):
             },
         }
         self.assertEqual(content.json(), expected)
+
+
+class TestJsonMediaFileContent(TestCase):
+    model = Dummy.content_type_for(content_types.JsonMediaFileContent)
+
+    def test_json(self):
+        """A JsonMediaFileContent can be rendered to json."""
+        image_type = 'image'
+        copyright = 'Incuna'
+        created = datetime.datetime(year=2015, month=3, day=1)
+
+        image = factories.MediaFileFactory.build(
+            type=image_type,
+            copyright=copyright,
+            created=created,
+        )
+        content = self.model(region='body', mediafile=image)
+
+        expected = {
+            'mediafile': {
+                'url': image.file.url,
+                'type': image_type,
+                'created': created,
+                'copyright': copyright,
+                'file_size': image.file.size,
+            },
+        }
+        self.assertEqual(content.json(), expected)

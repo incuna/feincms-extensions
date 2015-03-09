@@ -18,6 +18,10 @@ Dummy.register_regions(('body', 'Main'))
 Dummy.create_content_type(TestContent)
 Dummy.create_content_type(content_types.JsonRichTextContent)
 Dummy.create_content_type(
+    content_types.JsonMediaFileContent,
+    TYPE_CHOICES=TYPE_CHOICES,
+)
+Dummy.create_content_type(
     content_types.JsonSectionContent,
     TYPE_CHOICES=TYPE_CHOICES,
 )
