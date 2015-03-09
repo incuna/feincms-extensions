@@ -17,4 +17,15 @@ class JsonSectionContent(SectionContent):
 
     def json(self, **kwargs):
         """Return a json serializable dictionary containing the content."""
-        return {'title': self.title, 'html': self.richtext}
+        mediafile = self.mediafile
+        return {
+            'title': self.title,
+            'html': self.richtext,
+            'mediafile': {
+                'url': mediafile.file.url,
+                'type': mediafile.type,
+                'created': mediafile.created,
+                'copyright': mediafile.copyright,
+                'file_size': mediafile.file_size,
+            },
+        }

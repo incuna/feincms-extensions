@@ -1,5 +1,8 @@
+import datetime
+
 from django.test import TestCase
 
+from . import factories
 from .models import Dummy
 from .. import content_types
 
@@ -21,5 +24,31 @@ class TestJsonSectionContent(TestCase):
         """A JsonSectionContent can be rendered to json."""
         title = 'Section 1'
         richtext = 'Rich Text'
-        content = self.model(region='body', title=title, richtext=richtext)
-        self.assertEqual(content.json(), {'title': title, 'html': richtext})
+        image_type = 'image'
+        copyright = 'Incuna'
+        created = datetime.datetime(year=2015, month=3, day=1)
+
+        image = factories.MediaFileFactory.build(
+            type=image_type,
+            copyright=copyright,
+            created=created,
+        )
+        content = self.model(
+            region='body',
+            title=title,
+            richtext=richtext,
+            mediafile=image,
+        )
+
+        expected = {
+            'title': title,
+            'html': richtext,
+            'mediafile': {
+                'url': image.file.url,
+                'type': image_type,
+                'created': created,
+                'copyright': copyright,
+                'file_size': image.file.size,
+            },
+        }
+        self.assertEqual(content.json(), expected)
