@@ -12,23 +12,29 @@ class JsonRichTextContent(RichTextContent):
         return {'html': self.text}
 
 
+def mediafile_data(mediafile):
+    """Return json serializable data for the mediafile."""
+    if mediafile is None:
+        return None
+    return {
+        'url': mediafile.file.url,
+        'type': mediafile.type,
+        'created': mediafile.created,
+        'copyright': mediafile.copyright,
+        'file_size': mediafile.file_size,
+    }
+
+
 class JsonSectionContent(SectionContent):
     class Meta(SectionContent.Meta):
         abstract = True
 
     def json(self, **kwargs):
         """Return a json serializable dictionary containing the content."""
-        mediafile = self.mediafile
         return {
             'title': self.title,
             'html': self.richtext,
-            'mediafile': {
-                'url': mediafile.file.url,
-                'type': mediafile.type,
-                'created': mediafile.created,
-                'copyright': mediafile.copyright,
-                'file_size': mediafile.file_size,
-            },
+            'mediafile': mediafile_data(self.mediafile),
         }
 
 
@@ -38,13 +44,4 @@ class JsonMediaFileContent(MediaFileContent):
 
     def json(self, **kwargs):
         """Return a json serializable dictionary containing the content."""
-        mediafile = self.mediafile
-        return {
-            'mediafile': {
-                'url': mediafile.file.url,
-                'type': mediafile.type,
-                'created': mediafile.created,
-                'copyright': mediafile.copyright,
-                'file_size': mediafile.file_size,
-            },
-        }
+        return {'mediafile': mediafile_data(self.mediafile)}

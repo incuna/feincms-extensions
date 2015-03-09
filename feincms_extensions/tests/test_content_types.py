@@ -53,6 +53,25 @@ class TestJsonSectionContent(TestCase):
         }
         self.assertEqual(content.json(), expected)
 
+    def test_json_no_mediafile(self):
+        """A JsonSectionContent can be rendered to json."""
+        title = 'Section 1'
+        richtext = 'Rich Text'
+
+        content = self.model(
+            region='body',
+            title=title,
+            richtext=richtext,
+            mediafile=None,
+        )
+
+        expected = {
+            'title': title,
+            'html': richtext,
+            'mediafile': None,
+        }
+        self.assertEqual(content.json(), expected)
+
 
 class TestJsonMediaFileContent(TestCase):
     model = Dummy.content_type_for(content_types.JsonMediaFileContent)
