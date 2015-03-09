@@ -23,6 +23,7 @@ settings.configure(
         'django.contrib.admin',
 
         'feincms',
+        'feincms.module.medialibrary',
         'feincms.module.page',
 
         'feincms_extensions',
