@@ -90,12 +90,10 @@ class TestJsonMediaFileContent(TestCase):
         content = self.model(region='body', mediafile=image)
 
         expected = {
-            'mediafile': {
-                'url': image.file.url,
-                'type': image_type,
-                'created': created,
-                'copyright': copyright,
-                'file_size': image.file.size,
-            },
+            'url': image.file.url,
+            'type': image_type,
+            'created': created,
+            'copyright': copyright,
+            'file_size': image.file.size,
         }
         self.assertEqual(content.json(), expected)

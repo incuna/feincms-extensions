@@ -44,4 +44,4 @@ class JsonMediaFileContent(MediaFileContent):
 
     def json(self, **kwargs):
         """Return a json serializable dictionary containing the content."""
-        return {'mediafile': mediafile_data(self.mediafile)}
+        return mediafile_data(self.mediafile)
