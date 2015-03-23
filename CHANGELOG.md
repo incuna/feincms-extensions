@@ -1,3 +1,7 @@
+## v0.4.1 (Upcoming)
+
+* Add `content_type` keys to `json` methods.
+
 ## v0.4.0
 
 * Add `render_json` extension.

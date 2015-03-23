@@ -14,7 +14,10 @@ class TestJsonRichTextContent(TestCase):
         """A JsonRichTextContent can be rendered to json."""
         text = 'Rich Text'
         content = self.model(region='body', text=text)
-        self.assertEqual(content.json(), {'html': text})
+        self.assertEqual(content.json(), {
+            'content_type': 'rich-text',
+            'html': text,
+        })
 
 
 class TestJsonSectionContent(TestCase):
@@ -41,6 +44,7 @@ class TestJsonSectionContent(TestCase):
         )
 
         expected = {
+            'content_type': 'section',
             'title': title,
             'html': richtext,
             'mediafile': {
@@ -66,6 +70,7 @@ class TestJsonSectionContent(TestCase):
         )
 
         expected = {
+            'content_type': 'section',
             'title': title,
             'html': richtext,
             'mediafile': None,
@@ -90,6 +95,7 @@ class TestJsonMediaFileContent(TestCase):
         content = self.model(region='body', mediafile=image)
 
         expected = {
+            'content_type': 'media-file',
             'url': image.file.url,
             'type': image_type,
             'created': created,
