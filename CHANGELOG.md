@@ -1,4 +1,4 @@
-## v0.4.1 (Upcoming)
+## v0.4.1
 
 * Add `content_type` keys to `json` methods.
 
