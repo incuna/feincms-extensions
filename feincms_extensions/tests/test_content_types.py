@@ -13,10 +13,12 @@ class TestJsonRichTextContent(TestCase):
     def test_json(self):
         """A JsonRichTextContent can be rendered to json."""
         text = 'Rich Text'
-        content = self.model(region='body', text=text)
+        pk = 42
+        content = self.model(region='body', text=text, pk=pk)
         self.assertEqual(content.json(), {
             'content_type': 'rich-text',
             'html': text,
+            'id': pk,
         })
 
 
@@ -29,6 +31,7 @@ class TestJsonSectionContent(TestCase):
         richtext = 'Rich Text'
         image_type = 'image'
         copyright = 'Incuna'
+        pk = 42
         created = datetime.datetime(year=2015, month=3, day=1)
 
         image = factories.MediaFileFactory.build(
@@ -41,10 +44,12 @@ class TestJsonSectionContent(TestCase):
             title=title,
             richtext=richtext,
             mediafile=image,
+            pk=pk,
         )
 
         expected = {
             'content_type': 'section',
+            'id': pk,
             'title': title,
             'html': richtext,
             'mediafile': {
@@ -61,8 +66,10 @@ class TestJsonSectionContent(TestCase):
         """A JsonSectionContent can be rendered to json."""
         title = 'Section 1'
         richtext = 'Rich Text'
+        pk = 42
 
         content = self.model(
+            pk=pk,
             region='body',
             title=title,
             richtext=richtext,
@@ -71,6 +78,7 @@ class TestJsonSectionContent(TestCase):
 
         expected = {
             'content_type': 'section',
+            'id': pk,
             'title': title,
             'html': richtext,
             'mediafile': None,
@@ -86,16 +94,18 @@ class TestJsonMediaFileContent(TestCase):
         image_type = 'image'
         copyright = 'Incuna'
         created = datetime.datetime(year=2015, month=3, day=1)
+        pk = 42
 
         image = factories.MediaFileFactory.build(
             type=image_type,
             copyright=copyright,
             created=created,
         )
-        content = self.model(region='body', mediafile=image)
+        content = self.model(region='body', mediafile=image, pk=pk)
 
         expected = {
             'content_type': 'media-file',
+            'id': pk,
             'url': image.file.url,
             'type': image_type,
             'created': created,

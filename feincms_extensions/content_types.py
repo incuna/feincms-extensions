@@ -9,7 +9,11 @@ class JsonRichTextContent(RichTextContent):
 
     def json(self, **kwargs):
         """Return a json serializable dictionary containing the content."""
-        return {'content_type': 'rich-text', 'html': self.text}
+        return {
+            'content_type': 'rich-text',
+            'html': self.text,
+            'id': self.pk,
+        }
 
 
 def mediafile_data(mediafile):
@@ -32,6 +36,7 @@ class JsonSectionContent(SectionContent):
     def json(self, **kwargs):
         """Return a json serializable dictionary containing the content."""
         return {
+            'id': self.pk,
             'content_type': 'section',
             'title': self.title,
             'html': self.richtext,
@@ -47,4 +52,5 @@ class JsonMediaFileContent(MediaFileContent):
         """Return a json serializable dictionary containing the content."""
         data = mediafile_data(self.mediafile)
         data['content_type'] = 'media-file'
+        data['id'] = self.pk
         return data
