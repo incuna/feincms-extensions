@@ -78,6 +78,7 @@ class TestJsonSectionContent(TestCase):
 
         expected = {
             'content_type': 'section',
+            'id': pk,
             'title': title,
             'html': richtext,
             'mediafile': None,
