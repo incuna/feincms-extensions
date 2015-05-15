@@ -100,9 +100,8 @@ class TestJsonMediaFileContent(TestCase):
             type=image_type,
             copyright=copyright,
             created=created,
-            pk=pk,
         )
-        content = self.model(region='body', mediafile=image)
+        content = self.model(region='body', mediafile=image, pk=pk)
 
         expected = {
             'content_type': 'media-file',
