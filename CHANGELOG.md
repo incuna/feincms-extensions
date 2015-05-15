@@ -1,4 +1,4 @@
-## upcoming
+## v0.5.0
 
 * Add `id` to the json response in content types.
 
