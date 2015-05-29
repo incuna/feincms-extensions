@@ -1,3 +1,7 @@
+## v0.6.0
+
+* Add `caption` to the json response for `JsonMediaFileContent`.
+
 ## v0.5.0
 
 * Add `id` to the json response in content types.
