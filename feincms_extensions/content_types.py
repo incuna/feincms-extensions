@@ -53,4 +53,9 @@ class JsonMediaFileContent(MediaFileContent):
         data = mediafile_data(self.mediafile)
         data['content_type'] = 'media-file'
         data['id'] = self.pk
+        try:
+            caption = self.mediafile.translation.caption
+        except AttributeError:
+            caption = self.mediafile.file.name
+        data['caption'] = caption
         return data

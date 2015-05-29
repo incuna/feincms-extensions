@@ -96,11 +96,13 @@ class TestJsonMediaFileContent(TestCase):
         created = datetime.datetime(year=2015, month=3, day=1)
         pk = 42
 
-        image = factories.MediaFileFactory.build(
+        image = factories.MediaFileFactory.create(
             type=image_type,
             copyright=copyright,
             created=created,
         )
+        caption = 'Image file'
+        image.translations.create(caption=caption)
         content = self.model(region='body', mediafile=image, pk=pk)
 
         expected = {
@@ -111,5 +113,13 @@ class TestJsonMediaFileContent(TestCase):
             'created': created,
             'copyright': copyright,
             'file_size': image.file.size,
+            'caption': caption,
         }
         self.assertEqual(content.json(), expected)
+
+    def test_json_caption_fallback(self):
+        """The caption falls back to the file name."""
+        image = factories.MediaFileFactory.create()
+        content = self.model(mediafile=image)
+        caption = content.json()['caption']
+        self.assertEqual(caption, image.file.name)
