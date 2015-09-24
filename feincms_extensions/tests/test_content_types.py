@@ -33,6 +33,7 @@ class TestJsonSectionContent(TestCase):
         copyright = 'Incuna'
         pk = 42
         created = datetime.datetime(year=2015, month=3, day=1)
+        section_type = 'type1'
 
         image = factories.MediaFileFactory.build(
             type=image_type,
@@ -43,6 +44,7 @@ class TestJsonSectionContent(TestCase):
             region='body',
             title=title,
             richtext=richtext,
+            type=section_type,
             mediafile=image,
             pk=pk,
         )
@@ -52,6 +54,7 @@ class TestJsonSectionContent(TestCase):
             'id': pk,
             'title': title,
             'html': richtext,
+            'type': section_type,
             'mediafile': {
                 'url': image.file.url,
                 'type': image_type,
@@ -67,11 +70,13 @@ class TestJsonSectionContent(TestCase):
         title = 'Section 1'
         richtext = 'Rich Text'
         pk = 42
+        section_type = 'type1'
 
         content = self.model(
             pk=pk,
             region='body',
             title=title,
+            type=section_type,
             richtext=richtext,
             mediafile=None,
         )
@@ -82,6 +87,7 @@ class TestJsonSectionContent(TestCase):
             'title': title,
             'html': richtext,
             'mediafile': None,
+            'type': section_type,
         }
         self.assertEqual(content.json(), expected)
 
