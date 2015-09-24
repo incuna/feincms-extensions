@@ -1,3 +1,7 @@
+## v0.7.0
+
+* Add `type` to the json response for `JsonSectionContent`.
+
 ## v0.6.0
 
 * Add `caption` to the json response for `JsonMediaFileContent`.

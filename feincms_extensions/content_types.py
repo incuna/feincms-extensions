@@ -39,6 +39,7 @@ class JsonSectionContent(SectionContent):
             'id': self.pk,
             'content_type': 'section',
             'title': self.title,
+            'type': self.type,
             'html': self.richtext,
             'mediafile': mediafile_data(self.mediafile),
         }
